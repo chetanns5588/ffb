@@ -1,0 +1,18 @@
+<div *ngIf="item" routerLink="/product-detail/{{item.id}}" class="product mat-elevation-z2 mb-2">
+    <div class="img-block" style="background-image: url({{prodImage}})">
+        <span class="menu-overlay"></span>
+        <!-- <span class="menu-text">Add to Cart></span> -->
+    </div>
+    <div class="content-block">
+        <div class="description">
+            <div class="mrp pb-1">
+                {{item.mrp| currency:'INR':'symbol' : '1.0-0'}}
+                <span class="price"><del>{{item.price| currency:'INR':'symbol' : '1.0-0'}}</del></span>
+                <span class="discount">({{item.discount}}% Off)</span>
+            </div>
+        </div>
+        <div class="text-left" *ngIf="newArrival">
+            New Arrival
+        </div>
+    </div>
+</div>

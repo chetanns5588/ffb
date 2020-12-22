@@ -1,0 +1,22 @@
+.container{
+    padding: 20px;
+}
+table{
+    width: 100%;
+}
+mat-icon{
+    margin: 5px;
+    cursor: pointer;
+}
+.edit-icon , .save-icon{
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-icon:hover, .save-icon:hover{
+  color: blue;
+}
+.product{
+    display: flex;
+    align-items: center;
+}

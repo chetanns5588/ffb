@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+        </button>
+        <h1>FFB Admin</h1>
+        <span class="menu-spacer"></span>
+        <div>
+            <a mat-button [routerLink]="'/login'"> Login </a>
+            <a mat-button [routerLink]="'/login'"> Register </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" #drawer>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="'/products'" routerLinkActive="active"> Products </a>
+            <!-- <a mat-list-item [routerLink]="'/clients'" routerLinkActive="active"> Clients </a> -->
+            <a mat-list-item [routerLink]="'/orders'" routerLinkActive="active"> Orders </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

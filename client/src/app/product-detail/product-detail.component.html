@@ -1,0 +1,107 @@
+<div class="container pt-3 pb-3" *ngIf="product">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-3">
+                    <ul *ngIf="relativeImages">
+                        <li *ngFor="let relativeImage of relativeImages">
+                            <img [src]="relativeImage.path" alt="Thumbnail" class="small-img img-thumbnail img-responsive" [ngClass]="{'active-img': imageSrc == relativeImage.path}" (click)="onClick(relativeImage)">
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="big-image-container m-auto mat-elevation-z8">
+                        <img [src]="imageSrc" alt="Big Image" class="big-img img-responsive" *ngIf="imageSrc">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <span class="arrival" *ngIf="newArrival">
+                New Arrival
+            </span>
+            <h4 *ngIf="product.brand">Brand: {{product.brand}}</h4>
+            <h4 class="material">
+                <p>{{product.description}}</p>
+            </h4>
+            <p>{{product.style}}</p>
+            <h4 class="actual-price">
+                Rs. {{product.mrp}}/-
+            </h4>
+            <div class="price-gst" *ngIf="product.discount">
+                Rs. 
+                <span><del>{{product.price}}</del></span>({{product.discount}}% Off) 
+                <span class="gst">
+                    Additional GST may apply
+                </span>
+            </div>
+
+            <!-- <div class="preferred">
+                <u>
+                    543 peoples are preferred
+                </u>
+            </div> -->
+
+            <div>Select Size(UNI)</div>
+
+            <button mat-mini-fab mat-stroked-button *ngFor="let size of sizes" [color]="selectedSize == size.size?'warn':''" (click)="selectedSize = size.size">{{size.size}}</button>
+
+            <div>
+                <u><a style="cursor: pointer;" [matMenuTriggerFor]="menu">Size chart></a></u>
+                <mat-menu #menu="matMenu">
+                    <table class="table table-bordered m-0">
+                        <thead>
+                          <tr *ngFor="let size of sizes">
+                            <th>{{size.size}}</th>
+                            <th>{{size.chest}}</th>
+                            <th>{{size.waist}}</th>
+                            <th>{{size.hip}}</th>
+                          </tr>
+                        </thead>
+                        
+                      </table>
+                  </mat-menu>
+            </div>
+
+            <div>
+                <!-- <button mat-flat-button class="add-to-cart">Add to Cart</button>
+                <button mat-button class="favourites"><i class="far fa-heart"></i></button> -->
+                <button mat-flat-button class="buy-now" (click)="openBuynowDialog()">
+                    Buy Now
+                </button>
+            </div>
+            <div class="row ml-2">
+                <a href="https://www.instagram.com/sri.saradha/" target="_blank" class="link mat-elevation-z8">
+                    <i class="fab fa-instagram-square"></i>
+                </a>
+                <a href="https://www.facebook.com/Fashion-Fancy-Boutique-559331921160175" target="_blank" class="link mat-elevation-z8">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            <h2><u>Instructions</u></h2>
+            
+            <li>Soft and comfortable</li>
+            <li>Drapes well</li>
+            <li>Durable</li>
+            <li>Highly absorbent</li>
+            <li>Dyes and prints well</li>
+            <li>No static or pilling problems</li>
+            <li>Inexpensive</li>
+            <li>Colorfast</li>
+            <li>May be washable</li>
+
+            <!-- <a class="preferred"><u>Other details</u></a> -->
+        </div>
+    </div>
+
+    <br><br>
+    <div>
+        <h2>Related Products</h2>
+        <div class="row image-top-text-bottom" *ngIf="products">
+            <div class="col-md-6 col-lg-3 image-block-content pos-rel" [dataSource]="dataSource" *ngFor="let item of products|slice:0:4">
+                <app-product [item]="item"></app-product>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>

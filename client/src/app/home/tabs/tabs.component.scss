@@ -1,0 +1,20 @@
+.products{
+    width: 100%;
+}
+.pos-rel {
+    padding: 10px 0;
+}
+.search.product-search-2 {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    line-height: 45px;
+}
+::ng-deep{
+    .mat-tab-nav-bar, .mat-tab-header{
+        border: none !important;
+    }
+}
+mat-form-field{
+    width: 50%;
+}

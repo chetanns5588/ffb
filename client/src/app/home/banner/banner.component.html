@@ -1,0 +1,46 @@
+<!-- <div id="banner" class="banner" *ngIf="banner">
+    <div class="banner-inner">
+        <div class="bannerContent">
+            <div class="descr">
+                <h1>{{ banner.bannerHeader }}</h1>
+                <div class="descspecial-block">
+                    <div class="background">
+                        
+                    </div>
+                    <span class="special-txt">{{banner.bannerDiscount}}</span> 
+                </div>		
+                <h2>{{ banner.bannerOffer}}</h2>						
+            </div>
+        </div>
+    </div>
+    <div class="share-through">
+        <div class="text">Share it On</div>
+        <div class="icon-wrap">
+            <a href="#"><i class="fab fa-instagram-square"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+</div> -->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" [data-slide-to]="index" *ngFor="let banner of banners;let index"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let banner of banners;let i=index" [ngClass]="{'active': i == 0}">
+            <img [src]="banner" class="img-responsive" alt="banner">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>

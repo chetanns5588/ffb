@@ -1,0 +1,57 @@
+<div class="container">
+    <button mat-raised-button color="primary" (click)="openCreateProductDialog()">Create Product</button>
+    <mat-form-field class="float-right">
+        <input matInput placeholder="Search" (keyup)="applyFilter($event.target.value)" autocomplete="off">
+    </mat-form-field>
+    <br><br>
+
+    <div class="table-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="rounded-border">
+            
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Prod Id </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    {{element.id}}
+                </td>
+            </ng-container>
+
+            <!-- Brand Column -->
+            <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    {{element.brand}}
+                </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    {{element.description}}
+                </td>
+            </ng-container>
+            
+            <!-- MRP Column -->
+            <ng-container matColumnDef="mrp">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> MRP </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    {{element.mrp}}
+                </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    <mat-icon (click)="updateProducts(element)">edit</mat-icon>
+                    <mat-icon (click)="deleteProducts(element.id)">delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

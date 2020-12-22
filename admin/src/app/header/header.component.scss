@@ -1,0 +1,13 @@
+.menu-spacer {
+    flex: 1 1 auto;
+}
+mat-drawer {
+    width: 200px;
+}
+.example-container {
+    height: 100%;
+}
+.active{
+    background: #f2f2f2;
+    border-right: 5px solid blue;
+}

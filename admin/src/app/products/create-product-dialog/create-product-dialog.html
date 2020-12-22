@@ -1,0 +1,90 @@
+<h1 mat-dialog-title>
+    {{data?"Update Product": "Create Product"}}
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm" novalidate enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <input matInput placeholder="Material" formControlName="material">
+                    <mat-error>
+                        Please provide a valid material
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <input matInput placeholder="Brand" formControlName="brand">
+                    <mat-error>
+                        Please provide a valid Brand
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-form-field>
+            <input matInput placeholder="Style" formControlName="style">
+            <mat-error>
+                Please provide a valid Style
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Description" formControlName="description">
+            <mat-error>
+                Please provide a valid Description
+            </mat-error>
+        </mat-form-field>
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <i class="fas fa-rupee-sign" matPrefix></i>
+                    <input type="number" matInput placeholder="Price" formControlName="price" (keyup)="onChangeInput()">
+                    <mat-error>
+                        Please provide a valid Price
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <input type="number" matInput placeholder="Discount" formControlName="discount" (keyup)="onChangeInput()">
+                    <i class="fas fa-percent" matSuffix></i>
+                    <mat-error>
+                        Please provide a valid discount
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <i class="fas fa-rupee-sign" matPrefix></i>
+                    <input type="number" matInput placeholder="MRP" formControlName="mrp" readonly>
+                    <mat-error>
+                        Please provide a valid MRP
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field class="columns">
+            <div *ngFor="let selectedFile of selectedFiles">
+                <mat-label *ngIf="selectedFiles; else newFile">{{selectedFile.name}}</mat-label>
+            </div>
+            <ng-template #newFile>
+                <mat-label>Choose file</mat-label>
+            </ng-template>
+            <input matInput disabled placeholder="Select Product Images">
+            <button mat-icon-button matSuffix (click)="fileInput.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file" multiple>
+        </mat-form-field>
+        
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button 
+                type="submit" 
+                color="primary"
+                mat-button [mat-dialog-close]="true" 
+                cdkFocusInitial
+                (click)="onSubmitProductForm()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>

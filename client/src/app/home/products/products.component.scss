@@ -1,0 +1,45 @@
+.image-top-text-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.image-block-content.pos-rel {
+    width: 23%;
+    margin:1%; 
+    
+}
+.product-header{
+    display: flex;
+    align-items: center;
+}
+::ng-deep{
+    .mat-form-field-outline{
+        background: white;
+        border-radius: 10px;
+    }
+    .ngx-pagination{
+        margin-bottom: 0 !important;
+    }
+}
+fieldset{
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+legend{
+    width: auto;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.price-slider{
+    position: absolute;
+    top: 15px;
+}
+mat-card{
+    margin: 0 -10px;
+}
+mat-form-field{
+    width: 100%;
+}

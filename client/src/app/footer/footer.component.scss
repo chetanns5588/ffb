@@ -1,0 +1,56 @@
+.footer{
+    background: #212529;
+    color: white;
+    padding: 2.2rem;
+    text-align: center;
+}
+.mat-mini-fab{
+    margin: 5px;
+    i{
+        font-size: 20px;
+    }
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #212529;
+}
+.map, .envelope{
+    font-size: 20px;
+}
+.link{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    background: black;
+    border-radius: 50%;
+    margin: 5px;
+    i{
+        font-size: 20px;
+    }
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.footermenu {
+    text-align: left;
+    margin: 0 25%;
+    margin-bottom: 30px;
+    font-size: 16px;
+    ul {
+        padding: 0;
+    }
+    li a:hover{
+        color: #42bdcd;
+    }
+}
+
+.footer .footer-menu{
+    text-align: left;
+}
+.footermenu li{
+    list-style: none;
+    margin-bottom: 5px;
+}

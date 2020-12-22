@@ -1,0 +1,112 @@
+ul{
+    float: left;
+    li{
+        list-style-type: none;
+        margin-bottom: 10px;
+        img{
+            width: 70px;
+            height: 70px;
+        }
+    }
+}
+.active-img{
+    border: 1px solid black;
+}
+.big-image-container{
+
+    // position: relative;
+}
+.big-img{
+    // position: absolute;
+    width: 100%;
+    height: 100%;
+    // float: left;
+    // margin-left: 60px;
+}
+.arrival{
+    color: #fff;
+    background-color: #f36523;
+    padding: 5px 10px;
+    border-radius: 40px;
+}
+.material{
+    font-size: 20px;
+}
+.actual-price{
+    font-weight: bold;
+    font-size: 20px;
+}
+.price-gst{
+    color: brown;
+    padding-bottom: 20px;
+    font-weight: 500;
+    .gst{
+        color: darkgrey;
+        font-weight: 100;
+    }
+}
+.preferred{
+    color: brown;
+    padding-bottom: 20px;
+}
+.coupon-section{
+    position: relative;
+    padding-bottom: 20px;
+    .coupon-image{
+        width: 180px;
+        height: 30px;
+    }
+    .coupon-description{
+        color: grey;
+        position: absolute;
+        padding-left: 10px;
+    }
+}
+.mat-mini-fab{
+    margin: 5px;
+}
+.mat-flat-button{
+    width: 60%;
+    padding: 5px;
+    color: white;
+    margin: 5px;
+}
+.add-to-cart{
+    background: slategray;
+}
+.favourites{
+    background: lightgray;
+    font-size: 20px;
+}
+.buy-now{
+    background: orangered;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+    color: black;
+    background: none;
+}
+::ng-deep{
+    .mat-menu-content:not(:empty){
+        padding: 0 !important;
+    }
+}
+ul{
+    padding-left: initial;
+}
+
+.link{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    background: white;
+    border-radius: 50%;
+    margin: 5px;
+    i{
+        font-size: 20px;
+    }
+}
+a{
+    text-decoration: none;
+}

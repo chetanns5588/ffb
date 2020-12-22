@@ -1,0 +1,105 @@
+.img-block {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    background: #f4f6f5;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+.img-block img {
+    width: auto;
+    height: 100%;
+}
+.content-block {
+    padding: 10px;
+    height: 70px;
+    background-color: #fff;
+}
+.content-block .text-left {
+    width: max-content;
+    text-align: center !important;
+    font-size: 12px;
+    color: #fff;
+    background-color: #f36523;
+    padding: 2px 8px;
+    border-radius: 40px;
+}
+.menu-overlay{
+	display: block;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	-webkit-transition: width 0.5s ease 0s;
+	-moz-transition: width 0.5s ease 0s;
+	transition: width 0.5s ease 0s;
+}
+.menu-overlay:before, .menu-overlay:after{
+	content: "";
+	display: block;
+    height: 0;
+    width: 100%;
+    opacity: 0.3;
+	position: absolute;
+	background-color: rgba(14, 15, 17, 0.87);
+	-webkit-transition: height 0.4s ease 0s;
+	-moz-transition: height 0.4s ease 0s;
+	transition: height 0.4s ease 0s;
+}
+.menu-overlay:before{
+    top: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.menu-overlay:after{
+    bottom: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.img-block:hover .menu-overlay:before, .img-block:hover .menu-overlay:after{
+	height: 50%;
+}
+.menu-text{
+	width: 100%;
+	font-size: 14px;
+	line-height: 1.5;
+	text-transform: uppercase;
+	display: block;
+	position: absolute;
+	top: 80%;
+    opacity: 0;
+    text-align: center;
+    color: #fff;
+	-webkit-transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.img-block:hover .menu-text{
+	opacity: 1;
+	transition-delay: 0.2s;
+}
+.product{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    &:hover{
+        box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    }
+}
+.description{
+    font-size: 12px;
+    font-weight: bold;
+}
+.price{
+    color: darkgrey;
+    padding: 0 10px;
+}
+.discount{
+    color: brown;
+}

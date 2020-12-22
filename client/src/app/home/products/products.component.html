@@ -1,0 +1,50 @@
+<mat-card class="pb-0">
+    <div class="row product-detail-inner">
+        <div class="col-lg-3 col-md-4 product-header">
+            <h2>Kurthis for Women</h2>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <fieldset>
+                <legend>Price</legend>
+                <div class="price-slider">
+                    Low
+                        <mat-slider thumbLabel min="1000" max="2000"></mat-slider>
+                    High
+                </div>
+            </fieldset> 
+        </div>
+        <div class="col-lg-3 col-md-4 size-chart">
+            <mat-form-field appearance="outline">
+                <mat-label>Size</mat-label>
+                <mat-select [(ngModel)]="selectedSize" multiple>
+                  <mat-option *ngFor="let size of sizes" [value]="size">{{size}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-4 sortby">
+            <mat-form-field appearance="outline">
+                <mat-label>Sort By</mat-label>
+                <mat-select [(ngModel)]="selectedSort" multiple>
+                  <mat-option *ngFor="let sorting of sortings" [value]="sorting">{{sorting}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+    </div>
+</mat-card>
+<div *ngIf="products;else noProducts">
+    <div class="row image-top-text-bottom">
+        <div class="col-md-6 col-lg-3 mt-2 p-1" *ngFor="let item of products| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage}">
+            <app-product [item]="item"></app-product>
+        </div>
+    </div>
+</div>
+<ng-template #noProducts>
+    No Products Found
+</ng-template>
+<mat-card>
+    <pagination-controls 
+        (pageChange)="currentPage = $event"
+        previousLabel="Prev"
+        nextLabel="Next">
+    </pagination-controls>
+</mat-card>

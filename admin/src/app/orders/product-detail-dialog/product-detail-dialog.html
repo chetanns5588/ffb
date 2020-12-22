@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>
+    Product Detail
+</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col">
+            <mat-list role="list">
+                <mat-list-item role="listitem">Id</mat-list-item>
+                <mat-list-item role="listitem">Material</mat-list-item>
+                <mat-list-item role="listitem">Description</mat-list-item>
+                <mat-list-item role="listitem">Brand</mat-list-item>
+                <mat-list-item role="listitem">Style</mat-list-item>
+                <mat-list-item role="listitem">MRP</mat-list-item>
+                <mat-list-item role="listitem">Discount</mat-list-item>
+                <mat-list-item role="listitem">Price</mat-list-item>
+            </mat-list>
+        </div>
+        <div class="col">
+            <mat-list role="list">
+                <mat-list-item role="listitem">{{this.product.id}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.material}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.description}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.brand}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.style}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.mrp}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.discount}}</mat-list-item>
+                <mat-list-item role="listitem">{{this.product.price}}</mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" *ngFor="let relativeImage of relativeImages">
+            <mat-card class="pb-0">
+                <img mat-card-image [src]="relativeImage.path" alt="Thumbnail" class="img-responsive">
+            </mat-card>
+        </div>
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
