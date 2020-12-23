@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { PaymentService } from '../services/payment/payment.service';
@@ -41,6 +42,7 @@ export class ProductDetailComponent implements OnInit {
   userdata
   relativeImages = []
   constructor(private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private productsService: ProductsService,
     private uploadService: UploadFileService,
@@ -76,7 +78,9 @@ export class ProductDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(userdata => {
       this.userdata = userdata;
-      this.buyNow()
+      if(this.userdata){
+        this.buyNow();
+      }
     });
   }
 
@@ -198,5 +202,13 @@ export class ProductDetailComponent implements OnInit {
       var check = new Date(checkDate);
       this.newArrival = (check > from && check < to)?true: false;
     }
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Payment Success', '', {
+      duration: 500,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
   }
 }
