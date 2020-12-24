@@ -17,4 +17,8 @@ export class ProductsService {
   getProduct(prodId): Observable<any> {
     return this.http.get(`${environment.baseurl}/api/products/retreivebyid/${prodId}`)
   }
+
+  getRelatedProductsByMaterial(material): Observable<any>{
+    return this.http.get(`${environment.baseurl}/api/products/getRelatedProductsByMaterial/${material}`)
+  }
 }

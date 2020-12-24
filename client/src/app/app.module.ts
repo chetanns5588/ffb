@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CreateBuynowDialog } from './product-detail/create-buynow-dialog/create-buynow-dialog';
 import { TermsandconditionsComponent } from './footer/termsandconditions/termsandconditions.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CarouselModule 
   ],
   providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

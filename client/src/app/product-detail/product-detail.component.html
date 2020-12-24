@@ -17,9 +17,11 @@
             </div>
         </div>
         <div class="col-md-5">
-            <span class="arrival" *ngIf="newArrival">
-                New Arrival
-            </span>
+            <p>
+                <span class="arrival" *ngIf="newArrival">
+                    New Arrival
+                </span>
+            </p>
             <h4 *ngIf="product.brand">Brand: {{product.brand}}</h4>
             <h4 class="material">
                 <p>{{product.description}}</p>
@@ -97,11 +99,18 @@
     <br><br>
     <div>
         <h2>Related Products</h2>
-        <div class="row image-top-text-bottom" *ngIf="products">
-            <div class="col-md-6 col-lg-3 image-block-content pos-rel" [dataSource]="dataSource" *ngFor="let item of products|slice:0:4">
+        <!-- <div class="row image-top-text-bottom" *ngIf="products">
+            <div class="col-md-6 col-lg-3 image-block-content pos-rel" [dataSource]="dataSource" *ngFor="let item of products">
                 <app-product [item]="item"></app-product>
             </div>
-        </div>
+        </div> -->
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let item of products">
+                <ng-template carouselSlide [id]="item.id">
+                    <app-product [item]="item"></app-product>
+                </ng-template>
+              </ng-container>
+        </owl-carousel-o>
     </div>
     <br><br>
 </div>

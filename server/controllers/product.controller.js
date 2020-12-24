@@ -166,3 +166,16 @@ exports.retreiveById = async (req, res) => {
         });
     }
 }
+
+exports.getRelatedProductsByMaterial = (req, res) => {
+	Product.findAll({where: {material: req.params.material}}).then(products => {
+        res.status(200).json({
+            message: "Get all Related Products' Infos Successfully!",
+            Products: products,
+            error: ""
+        });
+	}).catch(err => {
+		console.log(err);
+		res.status(500).json({ msg: 'Error', detail: err });
+	});
+}

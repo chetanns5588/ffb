@@ -12,7 +12,7 @@ router.get('/api/products/retrieveinfos', products.retrieveAllProducts);
 router.put('/api/products/updatebyid/:id', products.updateById);
 router.delete('/api/products/deletebyid/:id', products.deleteById);
 router.get('/api/products/retreivebyid/:id', products.retreiveById);
-
+router.get('/api/products/getRelatedProductsByMaterial/:material', products.getRelatedProductsByMaterial);
 router.post('/api/file/uploadFiles/:prodId', upload.array('files'), files.uploadFiles);
 router.get('/api/listFilesByProdId/:prodId', files.listAllFiles);
 

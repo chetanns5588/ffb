@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaymentService } from '../services/payment/payment.service';
 import { Product } from '../services/products/product.model';
@@ -10,6 +11,7 @@ import { PurchaseService } from '../services/purchase/purchase.service';
 import { SweetAlertService } from '../services/sweet-alert/sweet-alert.service';
 import { UploadFileService } from '../services/upload-files/upload-files.service';
 import { CreateBuynowDialog } from './create-buynow-dialog/create-buynow-dialog';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare let Razorpay: any;
 @Component({
@@ -18,9 +20,33 @@ declare let Razorpay: any;
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  previewImageSrc: any;
-  zoomImageSrc: any;
-  enableZoom: Boolean = true;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    autoplay:true,
+    autoplayTimeout:3000,
+    margin: 10,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
+  }
 
   prodId: string;
   product: Product;
@@ -40,7 +66,8 @@ export class ProductDetailComponent implements OnInit {
   rzp1;
   newArrival: boolean = false;
   userdata
-  relativeImages = []
+  relativeImages = [];
+  paramsSub: Subscription;
   constructor(private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -53,17 +80,23 @@ export class ProductDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.prodId = this.route.snapshot.paramMap.get('prodId');
-    this.getProducts();
-    this.getFiles();
-    this.productsService.getProduct(this.prodId)
-          .subscribe((data) => {
-            this.product = data.product;
-          }, 
-          (error) => {
-            this.sweetAlertService.alertMessage('error',error["message"]);
-          });
-    this.checkDate();
+    this.paramsSub = this.route.params.subscribe(val => {
+      this.prodId = val.prodId;
+      if(this.prodId){
+        this.getFiles();
+        this.productsService.getProduct(this.prodId)
+        .subscribe((data) => {
+          this.product = data.product;
+          if(this.product){
+                  this.getRelatedProductsByMaterial();
+                  this.checkDate();
+                }
+              }, 
+              (error) => {
+                this.sweetAlertService.alertMessage('error',error["message"]);
+              });
+      }
+    });
   }
 
   onClick(relativeImageSrc) {
@@ -101,7 +134,8 @@ export class ProductDetailComponent implements OnInit {
             "amount": data.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": data.order.currency,
             "name": "FFB",
-            "description": "Test Transaction",
+            "description": "",
+            "image": "../../assets/images/ffblogo.jpg",
             "order_id": data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": async (response) => {
               await this.paymentSuccessHandler(response);
@@ -186,8 +220,9 @@ export class ProductDetailComponent implements OnInit {
     })
   }
 
-  getProducts() {
-    this.productsService.getProducts().subscribe(data => {
+  getRelatedProductsByMaterial() {
+    this.productsService.getRelatedProductsByMaterial(this.product.material)
+    .subscribe(data => {
       this.products = data.Products;
     }, error => {
       this.sweetAlertService.alertMessage('error',error["message"]);
@@ -211,4 +246,9 @@ export class ProductDetailComponent implements OnInit {
       verticalPosition: 'top',
     });
   }
+
+  public ngOnDestroy(): void {
+    // Prevent memory leaks
+    this.paramsSub.unsubscribe();
+}
 }

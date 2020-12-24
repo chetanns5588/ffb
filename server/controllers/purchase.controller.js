@@ -10,7 +10,6 @@ exports.purchase = async (req, res) => {
             receipt: 'order_rcptid_11',
             payment_capture: '0'
         };
-        console.log(razorpayInstance.orders)
         await razorpayInstance.orders.create(options, (err, order)=> {
             if (err) {
                 console.log("razor error ", err)
