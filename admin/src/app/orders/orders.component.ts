@@ -19,7 +19,16 @@ export class OrdersComponent implements OnInit {
   orders = [];
   dataSource: MatTableDataSource<Product>;
   editable: boolean[] = [];
-  displayedColumns: string[] = ['paymentId','orderId','productId','email','contact','paymentStatus'];
+  displayedColumns: string[] = [
+    'paymentId',
+    'orderId',
+    'productId',
+    'email',
+    'contact',
+    'address',
+    'size',
+    'paymentStatus'
+  ];
   
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

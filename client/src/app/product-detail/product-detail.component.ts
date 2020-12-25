@@ -104,17 +104,22 @@ export class ProductDetailComponent implements OnInit {
   }
 
   openBuynowDialog(product?:Product) {
-    const dialogRef = this.dialog.open(CreateBuynowDialog, {
-      width: '50%',
-      data: product
-    });
-
-    dialogRef.afterClosed().subscribe(userdata => {
-      this.userdata = userdata;
-      if(this.userdata){
-        this.buyNow();
-      }
-    });
+    if(!this.selectedSize){
+      alert("Please pick the size");
+    }
+    else{
+      const dialogRef = this.dialog.open(CreateBuynowDialog, {
+        width: '50%',
+        data: product
+      });
+  
+      dialogRef.afterClosed().subscribe(userdata => {
+        this.userdata = userdata;
+        if(this.userdata){
+          this.buyNow();
+        }
+      });
+    }
   }
 
   buyNow() {
@@ -178,6 +183,7 @@ export class ProductDetailComponent implements OnInit {
       email: this.userdata.email,
       contact: this.userdata.contact,
       address: this.userdata.address,
+      size: this.selectedSize,
       productId: this.prodId,
       paymentStatus: 'Success'
     }
@@ -197,6 +203,7 @@ export class ProductDetailComponent implements OnInit {
       email: this.userdata.email,
       contact: this.userdata.contact,
       address: this.userdata.address,
+      size: this.selectedSize,
       productId: this.prodId,
       paymentStatus: 'Failure'
     }
@@ -221,12 +228,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getRelatedProductsByMaterial() {
-    this.productsService.getRelatedProductsByMaterial(this.product.material)
-    .subscribe(data => {
-      this.products = data.Products;
-    }, error => {
-      this.sweetAlertService.alertMessage('error',error["message"]);
-    });
+    if(this.product.material){
+      this.productsService.getRelatedProductsByMaterial(this.product.material)
+      .subscribe(data => {
+        this.products = data.Products;
+      }, error => {
+        this.sweetAlertService.alertMessage('error',error["message"]);
+      });
+    }
   }
 
   checkDate(){

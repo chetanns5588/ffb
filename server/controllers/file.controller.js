@@ -5,6 +5,7 @@ const File = db.Files;
 exports.uploadFiles = async (req, res) => {
 	const messages = [];
 	const prodId = req.params.prodId;
+	await File.destroy({where: {productId: req.params.prodId}});
 	for (const file of req.files) {
 		const uploadfile = await File.create({
 			type: file.mimetype,
@@ -39,8 +40,17 @@ exports.uploadFiles = async (req, res) => {
 	return res.json(messages);
 }
 
+exports.updateUploadFiles = async (req, res) => {
+	const messages = [];
+	File.destroy({where: {productId: req.params.prodId}});
+	return res.json(messages);
+}
+
 exports.listAllFiles = (req, res) => {
-	File.findAll({where: {productId: req.params.prodId}}).then(files => {
+	File.findAll({
+		where: {productId: req.params.prodId},
+		order: [['name']]
+	}).then(files => {
 		const fileInfo = [];
 		for (let i = 0; i < files.length; i++) {
 			fileInfo.push({

@@ -1,6 +1,7 @@
 var await = require('await');
 const db = require('../config/db.config.js');
 const Product = db.Product;
+const File = db.Files;
 /**
  * Save a Product object to database MySQL/PostgreSQL
  * @param {*} req 
@@ -83,13 +84,13 @@ exports.updateById = async (req, res) => {
                 res.status(500).json({
                     message: "Error -> Can not update a Product with id = " + req.params.id,
                     error: "Can NOT Updated",
-                    products: []
+                    Products: []
                 });
             }
 
             res.status(200).json({
                 message: "Update successfully a Product with id = " + productId,
-                products: [updatedObject],
+                Products: [updatedObject],
                 error: ""           
             });
         }
@@ -119,6 +120,7 @@ exports.deleteById = async (req, res) => {
                 products: []
             });
         } else {
+            await File.destroy({where: {productId: productId}});
             await product.destroy();
             res.status(200).json({
                 message: "Delete Successfully a Product with id = " + productId,

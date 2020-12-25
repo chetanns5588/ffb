@@ -15,10 +15,7 @@ export class CreateProductDialog implements OnInit {
     
     products
     productForm: FormGroup;
-    
     selectedFiles: FileList;
-    currentFileUpload: File;
-    progress: { percentage: number } = { percentage: 0 };
   
     constructor(public dialogRef: MatDialogRef<CreateProductDialog>,
         @Inject(MAT_DIALOG_DATA) public data,
@@ -49,16 +46,13 @@ export class CreateProductDialog implements OnInit {
     }
 
     upload(prodId) {
-        this.progress.percentage = 0;
         this.uploadService.pushFilesToStorage(this.selectedFiles,prodId)
-        .subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-                this.progress.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-                console.log('File is completely uploaded!');
-            }
-        });
-
+        .subscribe(
+            (data) => {
+            
+            },(error)=>{
+                console.log("error",error)
+            });
         this.selectedFiles = undefined;
     }
 
@@ -83,8 +77,8 @@ export class CreateProductDialog implements OnInit {
             this.productsService.updateProduct(this.data.id,this.productForm.value)
                 .subscribe(
                     async (data:any) => {
-                        if(data && data.Products && data.Products[0].id){
-                            await this.upload(data.Products[0].id);
+                        if(data && data.Products){
+                            await this.upload(this.data.id);
                         }
                     },
                     (error)=>{
