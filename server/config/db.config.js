@@ -21,11 +21,15 @@ db.sequelize = sequelize;
  
 db.Product = require('../models/product.model.js')(sequelize, Sequelize);
 db.Files = require('../models/file.model.js')(sequelize, Sequelize);
+db.Sizes = require('../models/size.model.js')(sequelize, Sequelize);
 db.Purchase = require('../models/purchase.model.js')(sequelize, Sequelize);
 db.Payment = require('../models/payment.model.js')(sequelize, Sequelize);
 
 // Relations
 db.Product.hasMany(db.Files);
 db.Files.belongsTo(db.Product);
+
+db.Product.hasMany(db.Sizes);
+db.Sizes.belongsTo(db.Product);
 
 module.exports = db;

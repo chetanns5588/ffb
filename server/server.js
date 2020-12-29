@@ -3,7 +3,6 @@ var path = require('path');
 const app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
- 
 global.__basedir = __dirname;
 
 require('./config/razorpay.config.js');

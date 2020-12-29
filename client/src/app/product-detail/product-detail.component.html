@@ -46,7 +46,7 @@
 
             <div>Select Size(UNI)</div>
 
-            <button mat-mini-fab mat-stroked-button *ngFor="let size of sizes" [color]="selectedSize == size.size?'warn':''" (click)="selectedSize = size.size">{{size.size}}</button>
+            <button mat-mini-fab mat-stroked-button *ngFor="let size of availableSizes" [color]="selectedSize == size?'warn':''" (click)="selectedSize = size">{{size}}</button>
 
             <div>
                 <u><a style="cursor: pointer;" [matMenuTriggerFor]="menu">Size chart></a></u>

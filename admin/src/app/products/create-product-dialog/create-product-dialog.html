@@ -62,7 +62,33 @@
                 </mat-form-field>
             </div>
         </div>
-
+        <mat-form-field class="example-chip-list">
+            <mat-label>Favorite Sizes</mat-label>
+            <mat-chip-list #chipList aria-label="Size selection">
+              <mat-chip
+                *ngFor="let size of sizes"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(size)">
+                {{size}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New Size..."
+                #sizeInput
+                [formControl]="sizeCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let size of filteredSizes | async" [value]="size">
+                {{size}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          
         <mat-form-field class="columns">
             <div *ngFor="let selectedFile of selectedFiles">
                 <mat-label *ngIf="selectedFiles; else newFile">{{selectedFile.name}}</mat-label>

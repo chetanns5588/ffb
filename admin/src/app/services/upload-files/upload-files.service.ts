@@ -12,9 +12,11 @@ export class UploadFileService {
 
   pushFilesToStorage(files, prodId): Observable<any> {
     const formdata: FormData = new FormData();
-    [...files].forEach(file => {
-      formdata.append('files', file)
-    });
+    if(files){
+      [...files].forEach(file => {
+        formdata.append('files', file)
+      });
+    }
     return this.http.post(`${environment.baseurl}/api/file/uploadFiles/${prodId}`, formdata);
   }
 

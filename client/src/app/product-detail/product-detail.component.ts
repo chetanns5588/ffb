@@ -12,6 +12,7 @@ import { SweetAlertService } from '../services/sweet-alert/sweet-alert.service';
 import { UploadFileService } from '../services/upload-files/upload-files.service';
 import { CreateBuynowDialog } from './create-buynow-dialog/create-buynow-dialog';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SizeService } from '../services/size/size.service';
 
 declare let Razorpay: any;
 @Component({
@@ -60,7 +61,7 @@ export class ProductDetailComponent implements OnInit {
     { size: "XXL", chest: 42, waist: 40, hip: 46 },
     { size: "XXXL", chest: 44, waist: 42, hip: 48 },
   ];
-
+  availableSizes = [];
   selectedSize = "";
   products: Product[] = [];
   rzp1;
@@ -73,6 +74,7 @@ export class ProductDetailComponent implements OnInit {
     public dialog: MatDialog,
     private productsService: ProductsService,
     private uploadService: UploadFileService,
+    private sizeService: SizeService,
     private purchaseService: PurchaseService,
     private paymentService: PaymentService,
     private sweetAlertService: SweetAlertService) { 
@@ -84,6 +86,7 @@ export class ProductDetailComponent implements OnInit {
       this.prodId = val.prodId;
       if(this.prodId){
         this.getFiles();
+        this.getSizes();
         this.productsService.getProduct(this.prodId)
         .subscribe((data) => {
           this.product = data.product;
@@ -224,6 +227,14 @@ export class ProductDetailComponent implements OnInit {
         })
         this.imageSrc = data[0].path;
       }
+    })
+  }
+
+  getSizes(){
+    this.sizeService.getSizes(this.prodId).subscribe((sizeData)=>{
+      sizeData.forEach((data)=>{
+        this.availableSizes.push(data.name);
+      })
     })
   }
 

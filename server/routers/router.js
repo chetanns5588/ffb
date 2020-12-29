@@ -6,6 +6,7 @@ let payment = require('../controllers/payment.controller');
 
 const products = require('../controllers/product.controller.js');
 const files = require('../controllers/file.controller.js');
+const sizes = require('../controllers/size.controller.js');
 
 router.post('/api/products/create', products.create);
 router.get('/api/products/retrieveinfos', products.retrieveAllProducts);
@@ -16,6 +17,9 @@ router.get('/api/products/getRelatedProductsByMaterial/:material', products.getR
 
 router.post('/api/file/uploadFiles/:prodId', upload.array('files'), files.uploadFiles);
 router.get('/api/listFilesByProdId/:prodId', files.listAllFiles);
+
+router.post('/api/size/pushSizesToProduct/:prodId', sizes.pushSizesToProduct);
+router.get('/api/listSizesByProdId/:prodId', sizes.listAllSizes);
 
 router.post('/api/user-purchase/purchase', purchase.purchase);
 

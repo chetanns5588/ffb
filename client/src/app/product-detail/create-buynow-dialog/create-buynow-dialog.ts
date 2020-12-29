@@ -22,6 +22,7 @@ export class CreateBuynowDialog implements OnInit {
     }
     
     ngOnInit() {
+        
     }
     
     keyPress(event: any) {
