@@ -18,3 +18,8 @@
 mat-form-field{
     width: 50%;
 }
+@media ( max-width : 678px){
+    mat-form-field{
+        width: 90%;
+    }
+}

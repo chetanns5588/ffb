@@ -27,8 +27,8 @@ export class ProductDetailComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     dots: true,
-    autoplay:true,
-    autoplayTimeout:3000,
+    autoplay: true,
+    autoplayTimeout: 3000,
     margin: 10,
     navSpeed: 700,
     navText: ['', ''],
@@ -62,6 +62,15 @@ export class ProductDetailComponent implements OnInit {
     { size: "XXXL", chest: 44, waist: 42, hip: 48 },
   ];
   availableSizes = [];
+
+  defaultSizes = [
+    { size: 'S', disabled: true },
+    { size: 'M', disabled: true },
+    { size: 'L', disabled: true },
+    { size: 'XL', disabled: true },
+    { size: 'XXL', disabled: true }
+  ];
+
   selectedSize = "";
   products: Product[] = [];
   rzp1;
@@ -77,27 +86,27 @@ export class ProductDetailComponent implements OnInit {
     private sizeService: SizeService,
     private purchaseService: PurchaseService,
     private paymentService: PaymentService,
-    private sweetAlertService: SweetAlertService) { 
-      
-    }
+    private sweetAlertService: SweetAlertService) {
+
+  }
 
   ngOnInit(): void {
     this.paramsSub = this.route.params.subscribe(val => {
       this.prodId = val.prodId;
-      if(this.prodId){
+      if (this.prodId) {
         this.getFiles();
         this.getSizes();
         this.productsService.getProduct(this.prodId)
-        .subscribe((data) => {
-          this.product = data.product;
-          if(this.product){
-                  this.getRelatedProductsByMaterial();
-                  this.checkDate();
-                }
-              }, 
-              (error) => {
-                this.sweetAlertService.alertMessage('error',error["message"]);
-              });
+          .subscribe((data) => {
+            this.product = data.product;
+            if (this.product) {
+              this.getRelatedProductsByMaterial();
+              this.checkDate();
+            }
+          },
+            (error) => {
+              this.sweetAlertService.alertMessage('error', error["message"]);
+            });
       }
     });
   }
@@ -106,19 +115,19 @@ export class ProductDetailComponent implements OnInit {
     this.imageSrc = relativeImageSrc.path;
   }
 
-  openBuynowDialog(product?:Product) {
-    if(!this.selectedSize){
+  openBuynowDialog(product?: Product) {
+    if (!this.selectedSize) {
       alert("Please pick the size");
     }
-    else{
+    else {
       const dialogRef = this.dialog.open(CreateBuynowDialog, {
         width: '50%',
         data: product
       });
-  
+
       dialogRef.afterClosed().subscribe(userdata => {
         this.userdata = userdata;
-        if(this.userdata){
+        if (this.userdata) {
           this.buyNow();
         }
       });
@@ -127,11 +136,11 @@ export class ProductDetailComponent implements OnInit {
 
   buyNow() {
     let purchaseObject = {
-      "user_id":"",
-      "user_name":"",
-      "user_email":"",
-      "recipient_name":"",
-      "recipient_email":"",
+      "user_id": "",
+      "user_name": "",
+      "user_email": "",
+      "recipient_name": "",
+      "recipient_email": "",
       "amount": this.product.mrp
     }
     this.purchaseService.purchase(purchaseObject)
@@ -161,7 +170,7 @@ export class ProductDetailComponent implements OnInit {
             }
           };
           var rzp1 = new Razorpay(options);
-          rzp1.on('payment.failed', async(response) =>{
+          rzp1.on('payment.failed', async (response) => {
             await this.paymentFailureHandler(response);
             // alert("Code:"+response.error.code);
             // alert("description:"+response.error.description);
@@ -178,7 +187,7 @@ export class ProductDetailComponent implements OnInit {
       });
   }
 
-  paymentSuccessHandler(response){
+  paymentSuccessHandler(response) {
     const paymentObject = {
       paymentId: response.razorpay_payment_id,
       orderId: response.razorpay_order_id,
@@ -191,14 +200,14 @@ export class ProductDetailComponent implements OnInit {
       paymentStatus: 'Success'
     }
     this.paymentService.payment(paymentObject)
-      .subscribe((data)=>{
+      .subscribe((data) => {
         console.log(data)
-      },(error)=>{
+      }, (error) => {
         console.log(error);
       })
   }
 
-  paymentFailureHandler(response){
+  paymentFailureHandler(response) {
     const paymentObject = {
       paymentId: response.error.metadata.payment_id,
       orderId: response.error.metadata.order_id,
@@ -211,51 +220,59 @@ export class ProductDetailComponent implements OnInit {
       paymentStatus: 'Failure'
     }
     this.paymentService.payment(paymentObject)
-      .subscribe((data)=>{
+      .subscribe((data) => {
         console.log(data)
-      },(error)=>{
+      }, (error) => {
         console.log(error);
       })
   }
 
-  getFiles(){
-    this.uploadService.getFiles(this.prodId).subscribe((data)=>{
-      if(data && data[0] && data[0].path){
+  getFiles() {
+    this.uploadService.getFiles(this.prodId).subscribe((data) => {
+      if (data && data[0] && data[0].path) {
         this.relativeImages = data;
-        this.relativeImages.forEach((relativeImage)=>{
-          relativeImage.path = environment.baseurl + '/' +relativeImage.path
+        this.relativeImages.forEach((relativeImage) => {
+          relativeImage.path = environment.baseurl + '/' + relativeImage.path
         })
         this.imageSrc = data[0].path;
       }
     })
   }
 
-  getSizes(){
-    this.sizeService.getSizes(this.prodId).subscribe((sizeData)=>{
-      sizeData.forEach((data)=>{
+  getSizes() {
+    this.sizeService.getSizes(this.prodId).subscribe((sizeData) => {
+      sizeData.forEach((data) => {
         this.availableSizes.push(data.name);
       })
+      this.defaultSizes.forEach((defaultSize) => {
+        this.availableSizes.forEach((availableSize) => {
+          if (defaultSize.size === availableSize) {
+            defaultSize.disabled = false;
+          }
+        })
+      })
     })
+
   }
 
   getRelatedProductsByMaterial() {
-    if(this.product.material){
+    if (this.product.material) {
       this.productsService.getRelatedProductsByMaterial(this.product.material)
-      .subscribe(data => {
-        this.products = data.Products;
-      }, error => {
-        this.sweetAlertService.alertMessage('error',error["message"]);
-      });
+        .subscribe(data => {
+          this.products = data.Products;
+        }, error => {
+          this.sweetAlertService.alertMessage('error', error["message"]);
+        });
     }
   }
 
-  checkDate(){
-    if(this.product){
-      var checkDate = new Date(this.product.updatedAt).toJSON().slice(0,10);
+  checkDate() {
+    if (this.product) {
+      var checkDate = new Date(this.product.updatedAt).toJSON().slice(0, 10);
       var from = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
-      var to   = new Date();
+      var to = new Date();
       var check = new Date(checkDate);
-      this.newArrival = (check > from && check < to)?true: false;
+      this.newArrival = (check > from && check < to) ? true : false;
     }
   }
 
@@ -270,5 +287,6 @@ export class ProductDetailComponent implements OnInit {
   public ngOnDestroy(): void {
     // Prevent memory leaks
     this.paramsSub.unsubscribe();
-}
+  }
+
 }

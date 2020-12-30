@@ -100,7 +100,7 @@ ul{
     align-items: center;
     justify-content: center;
     width: 40px;
-    background: white;
+    background:#ffffff;
     border-radius: 50%;
     margin: 5px;
     i{
@@ -109,4 +109,13 @@ ul{
 }
 a{
     text-decoration: none;
+}
+.social-icon{
+    cursor: pointer;
+    margin: 5px;
+    color:#000000;
+    background-color: transparent;
+    font-size: 22px;
+    display: block;
+    width: 30px;
 }

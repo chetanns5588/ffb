@@ -46,7 +46,13 @@
 
             <div>Select Size(UNI)</div>
 
-            <button mat-mini-fab mat-stroked-button *ngFor="let size of availableSizes" [color]="selectedSize == size?'warn':''" (click)="selectedSize = size">{{size}}</button>
+            <button mat-mini-fab mat-stroked-button 
+                *ngFor="let defaultSize of defaultSizes;let i=index" 
+                [color]="selectedSize == defaultSize.size?'warn':''" 
+                (click)="selectedSize = defaultSize.size"
+                [disabled]="defaultSize.disabled">
+                {{defaultSize.size}}
+            </button>
 
             <div>
                 <u><a style="cursor: pointer;" [matMenuTriggerFor]="menu">Size chart></a></u>
@@ -73,12 +79,8 @@
                 </button>
             </div>
             <div class="row ml-2">
-                <a href="https://www.instagram.com/sri.saradha/" target="_blank" class="link mat-elevation-z8">
-                    <i class="fab fa-instagram-square"></i>
-                </a>
-                <a href="https://www.facebook.com/Fashion-Fancy-Boutique-559331921160175" target="_blank" class="link mat-elevation-z8">
-                    <i class="fab fa-facebook"></i>
-                </a>
+                <a (click)="shareviaFb()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/fb.png" alt="fb"></a>
+                <a (click)="shareviaInsta()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/insta.png" alt="instagram"></a>
             </div>
             <h2><u>Instructions</u></h2>
             
