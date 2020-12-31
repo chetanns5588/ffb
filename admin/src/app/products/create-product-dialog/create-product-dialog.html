@@ -91,6 +91,7 @@
           
         <mat-form-field class="columns">
             <div *ngFor="let selectedFile of selectedFiles">
+                {{selectedFile.filename}}
                 <mat-label *ngIf="selectedFiles; else newFile">{{selectedFile.name}}</mat-label>
             </div>
             <ng-template #newFile>

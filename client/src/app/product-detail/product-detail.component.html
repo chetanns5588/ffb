@@ -79,8 +79,18 @@
                 </button>
             </div>
             <div class="row ml-2">
-                <a (click)="shareviaFb()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/fb.png" alt="fb"></a>
-                <a (click)="shareviaInsta()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/insta.png" alt="instagram"></a>
+                <button mat-mini-fab [matMenuTriggerFor]="shareMenu" >
+                    <mat-icon>share</mat-icon>
+                </button>
+                <mat-menu #shareMenu="matMenu">
+                    <share-buttons theme="material-dark"
+                        [include]="['facebook','linkedin','telegram','whatsapp','email']"
+                        [show]="5"
+                        [size]="-4">
+                    </share-buttons>
+                </mat-menu>
+                <!-- <a (click)="shareviaFb()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/fb.png" alt="fb"></a>
+                <a (click)="shareviaInsta()" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/insta.png" alt="instagram"></a> -->
             </div>
             <h2><u>Instructions</u></h2>
             

@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit {
     }, error => {
       this.sweetAlertService.alertMessage('error',error["message"]);
     });
-
   }
 
   refreshDataSource() {

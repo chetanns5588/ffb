@@ -21,6 +21,8 @@ import { CreateBuynowDialog } from './product-detail/create-buynow-dialog/create
 import { TermsandconditionsComponent } from './footer/termsandconditions/termsandconditions.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MaterialModule,
     HttpClientModule,
     NgxPaginationModule,
-    CarouselModule 
+    CarouselModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

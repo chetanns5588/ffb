@@ -75,10 +75,10 @@ export class CreateProductDialog implements OnInit {
         this.uploadService.getFiles(this.data.id).subscribe((data)=>{
           if(data){
               this.selectedFiles = data;
-              console.log("data:",data,this.selectedFiles)
+              console.log("data:",this.selectedFiles)
           }
         })
-      }
+    }
 
     add(event: MatChipInputEvent): void {
         const input = event.input;
@@ -121,6 +121,7 @@ export class CreateProductDialog implements OnInit {
     }
 
     upload(prodId) {
+        console.log("this.selectedFiles",this.selectedFiles);
         this.uploadService.pushFilesToStorage(this.selectedFiles, prodId)
             .subscribe(
                 (data) => {
