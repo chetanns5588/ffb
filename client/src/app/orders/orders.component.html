@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="header">
+        <div class="user">
+            <i class="fas fa-user-circle m-auto pr-2"></i>
+            <span class="name">
+                Hello John
+                <div class="your-cart">Order details</div>
+            </span>
+        </div>
+        <h2 class="float-right">
+            3 Items
+        </h2>
+    </div>
+    <hr>
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <img src="http://localhost:3000/1/0W2A7316-min.JPG" class="img-thumbnail example-margin" alt="">
+                    <div>
+                        Floral Leafy Foll Kurta
+                        <div class="mt-2 mb-2">
+                            <span class="arrival">
+                                New Arrival
+                            </span>
+                        </div>
+                        <div class="seller">Seller: Fashion and fancy Boutique</div>
+                        <h2>Rs. 700/-</h2>
+                    </div>
+                    <div class="row ml-auto">
+                        <span class="m-auto received">
+                            Shipped
+                        </span>
+                    </div>
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+              {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+                <div class="row">
+                    <div class="col">
+                        <div class="sub-header">
+                            Shipping Address
+                        </div>
+                        <div>BENN VIJO</div>
+                        <div>St.Thomas Street</div>
+                        <div>Ph.No: 7353878930</div>
+                    </div>
+                    <div class="col text-right">
+                        <div class="sub-header">
+                            Price Details
+                        </div>
+                        <div>Total</div>
+                        <div>Rs.700</div>
+                        <div class="payment-status">Payment Status: Completed</div>
+                    </div>
+                </div>
+            </ng-template>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <img src="http://localhost:3000/1/0W2A7316-min.JPG" class="img-thumbnail example-margin" alt="">
+                    <div>
+                        Floral Leafy Foll Kurta
+                        <div class="mt-2 mb-2">
+                            <span class="arrival">
+                                New Arrival
+                            </span>
+                        </div>
+                        <div>SELLER: Fashion and fancy Boutique</div>
+                        <div>Rs. 700/-</div>
+                    </div>
+                    <div class="row ml-auto">
+                        <span class="m-auto received">
+                            Received
+                        </span>
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <img src="http://localhost:3000/1/0W2A7316-min.JPG" class="img-thumbnail example-margin" alt="">
+                    <div>
+                        Floral Leafy Foll Kurta
+                        <div class="mt-2 mb-2">
+                            <span class="arrival">
+                                New Arrival
+                            </span>
+                        </div>
+                        <div>SELLER: Fashion and fancy Boutique</div>
+                        <div>Rs. 700/-</div>
+                    </div>
+                    <div class="row ml-auto">
+                        <span class="m-auto received">
+                            Received
+                        </span>
+                    </div>
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+              {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="row p-4">
+        <a routerLink="/home">
+            < Back to Home Page</a>
+    </div>
+
+</div>

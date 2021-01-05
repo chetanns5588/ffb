@@ -1,0 +1,55 @@
+.user{
+    font-size: 40px;
+    display: inline-flex;
+    .name{
+        font-size: 16px;
+    }
+    .your-cart{
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+.header{
+    padding: 10px;
+    background: aliceblue;
+}
+.img-thumbnail{
+    height: 70px;
+    width: 70px;
+}
+.mat-expansion-panel-header{
+    height: auto;
+}
+.arrival{
+    color: #fff;
+    background-color: #f36523;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: x-small;
+}
+.example-margin {
+    margin: 12px;
+}
+.container{
+    padding: 40px 0;
+}
+.received{
+    color: limegreen;
+}
+mat-expansion-panel{
+    padding: 20px 0;
+}
+.expansion-body{
+    margin-top: 20px;
+    margin-left: 95px;
+}
+.seller{
+    color: darkgray;
+}
+.sub-header{
+    color: darkgray;
+    text-transform: uppercase;
+}
+.payment-status{
+    color: limegreen;
+}

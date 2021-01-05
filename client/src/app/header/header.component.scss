@@ -18,8 +18,13 @@ button{
 }
 .cart, .order{
     cursor: pointer;
-    color: orange;
+    text-decoration: none;
+    color: black;
     margin: 5px;
     display: grid;
     font-size: small;
+}
+
+.nav-item{
+    text-align: center;
 }

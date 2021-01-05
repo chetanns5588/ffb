@@ -1,0 +1,51 @@
+.user{
+    font-size: 40px;
+    display: inline-flex;
+    .name{
+        font-size: 16px;
+    }
+    .your-cart{
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+.header{
+    padding: 10px;
+    background: aliceblue;
+}
+.cart-header-row{
+    font-weight: 500;
+    text-transform: uppercase;
+    color: gray;
+}
+.img-thumbnail{
+    height: 70px;
+    width: 70px;
+}
+.example-margin {
+    margin: 12px;
+}
+.cart-data-row{
+    padding: 15px 0;
+    border-bottom: 1px solid lightgray;
+}
+.container{
+    padding: 40px 0;
+}
+.total-row{
+    padding: 40px 0;
+}
+.arrival{
+    color: #fff;
+    background-color: #f36523;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: x-small;
+}
+.buy-now{
+    width: 200px;
+    background: #f36523;
+    color: white;
+    display: block;
+    text-transform: uppercase;
+}

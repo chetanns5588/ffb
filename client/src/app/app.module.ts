@@ -26,6 +26,8 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { CartComponent } from './cart/cart.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, So
     TermsandconditionsComponent,
     CreateBuynowDialog,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CartComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
