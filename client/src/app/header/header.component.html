@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md fixed-top bg-white">
+<nav class="navbar navbar-expand-md fixed-top bg-light navbar-light">
     <!-- Brand -->
     <a class="navbar-brand" href="#">
         <img src="../assets/images/ffblogo.jpg" height="50" alt="logo">
@@ -11,20 +11,29 @@
 
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <p class="d-flex ml-auto">
+        <!-- <p class="d-flex ml-auto">
             <a href="https://www.instagram.com/sri.saradha/" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/fb.png" alt="fb"></a>
             <a href="https://www.facebook.com/Fashion-Fancy-Boutique-559331921160175" target="_blank" class="social-icon"><img class="img-fluid" src="../../assets/images/insta.png" alt="instagram"></a>
-        </p>
-        <!-- <ul class="navbar-nav ml-auto">
+        </p> -->
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <button mat-stroked-button (click)="openLogin()">Login</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <button mat-stroked-button (click)="openSignup()">Sign Up</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a href="" class="cart">
+                    <img class="img-fluid m-auto" width="25" src="../../assets/images/cart.png" alt="">
+                    Cart
+                </a>
             </li>
-        </ul> -->
+            <li class="nav-item">
+                <a href="" class="order">
+                    <img class="img-fluid m-auto" width="25" src="../../assets/images/orders.png" alt="">
+                    My Orders
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>

@@ -121,8 +121,18 @@ export class CreateProductDialog implements OnInit {
     }
 
     upload(prodId) {
-        console.log("this.selectedFiles",this.selectedFiles);
         this.uploadService.pushFilesToStorage(this.selectedFiles, prodId)
+            .subscribe(
+                (data) => {
+
+                }, (error) => {
+                    console.log("error", error)
+                });
+        this.selectedFiles = undefined;
+    }
+    
+    updateUpload(prodId) {
+        this.uploadService.updateFilesToStorage(this.selectedFiles, prodId)
             .subscribe(
                 (data) => {
 
@@ -165,7 +175,7 @@ export class CreateProductDialog implements OnInit {
                 .subscribe(
                     async (data: any) => {
                         if (data && data.Products) {
-                            await this.upload(this.data.id);
+                            await this.updateUpload(this.data.id);
                             await this.pushSizes(this.data.id);
                         }
                     },

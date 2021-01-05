@@ -20,6 +20,16 @@ export class UploadFileService {
     return this.http.post(`${environment.baseurl}/api/file/uploadFiles/${prodId}`, formdata);
   }
 
+  updateFilesToStorage(files, prodId): Observable<any> {
+    const formdata: FormData = new FormData();
+    if(files){
+      [...files].forEach(file => {
+        formdata.append('files', file)
+      });
+    }
+    return this.http.post(`${environment.baseurl}/api/file/updateUploadFiles/${prodId}`, formdata);
+  }
+
   getFiles(prodId): Observable<any> {
     return this.http.get(`${environment.baseurl}/api/listFilesByProdId/${prodId}`);
   }

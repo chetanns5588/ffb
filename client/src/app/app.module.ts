@@ -23,6 +23,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
     HomeComponent,
     FooterComponent,
     TermsandconditionsComponent,
-    CreateBuynowDialog
+    CreateBuynowDialog,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +54,28 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
     NgxPaginationModule,
     CarouselModule,
     ShareButtonsModule,
-    ShareIconsModule
+    ShareIconsModule,
+    SocialLoginModule
   ],
-  providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
+  providers: [
+    {provide : LocationStrategy , useClass: HashLocationStrategy},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('528961187921-ld24b25466u4t2lacn9r35asg000lfis.apps.googleusercontent.com')
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('561602290896109')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

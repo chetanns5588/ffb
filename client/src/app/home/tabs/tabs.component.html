@@ -2,14 +2,14 @@
     <div class="row">
         <mat-form-field appearance="outline" class="m-auto">
             <mat-label>Search your product</mat-label>
-            <input matInput placeholder="Search your product">
+            <input matInput placeholder="Search your product" [(ngModel)]="searchedKeyword">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
     <mat-tab-group>
         <mat-tab label="TOP PRODUCTS">
             <div class="container pt-2 pb-2">
-                <app-products></app-products>
+                <app-products [searchedKeyword]="searchedKeyword"></app-products>
             </div>
         </mat-tab>
     </mat-tab-group>

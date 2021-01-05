@@ -31,15 +31,20 @@
         </div> -->
     </div>
 </mat-card>
-<div *ngIf="products;else noProducts">
+<div *ngIf="products.length > 0;else noProducts">
     <div class="row image-top-text-bottom">
-        <div class="col-md-6 col-lg-3 mt-2 p-1" *ngFor="let item of products| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage}">
+        <div class="col-md-6 col-lg-3 mt-2 p-1" 
+            *ngFor="let item of products
+                 
+                | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage}">
             <app-product [item]="item"></app-product>
         </div>
     </div>
 </div>
 <ng-template #noProducts>
-    No Products Found
+    <!-- <mat-card>
+        No Products Found
+    </mat-card> -->
 </ng-template>
 <mat-card>
     <pagination-controls 

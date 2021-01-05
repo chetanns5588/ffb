@@ -13,3 +13,13 @@ mat-form-field{
 .navbar{
     border-bottom: 1px solid #f2f2f2;
 }
+button{
+    margin: 5px;
+}
+.cart, .order{
+    cursor: pointer;
+    color: orange;
+    margin: 5px;
+    display: grid;
+    font-size: small;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { Product } from 'src/app/services/products/product.model';
 import { ProductsService } from 'src/app/services/products/products.service';
@@ -10,6 +10,9 @@ import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.serv
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  
+  @Input('searchedKeyword') searchedKeyword
+  
   products: Product[] = [];
   itemsPerPage: number = 8;
   currentPage: number = 1;

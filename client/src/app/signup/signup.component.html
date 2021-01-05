@@ -1,0 +1,40 @@
+<div class="LBox H_100 hideResponsive">
+    <div class="flexColumn FlxBox H_100">
+        <div class="Logo">
+            <a href=""><img src="../../assets/images/ffb.png" alt="ffblogo"/></a>
+        </div>
+        <div class="enrollBar pos-rel">
+            <span class="leftBar" style="left:0;width: 29%;"></span>
+            <span class="rightBar" style="right:0;width: 29%;"></span>
+            <span class="header-text-inner top-text">SIGN UP</span>
+        </div>
+        <div class="sign-up-using">
+            <p>Sign Up using</p>
+            <div class="row">
+                <a (click)="signInWithGoogle()" target="_blank" class="social-icon">
+                    <img class="img-fluid" src="../../assets/images/google.png" alt="google">
+                </a>
+                <a (click)="signInWithFB()" target="_blank" class="social-icon">
+                    <img class="img-fluid" src="../../assets/images/facebook.png" alt="facebook">
+                </a>
+            </div>
+            or
+        </div>
+        <div class="formBlock">
+            <form action="" novalidate>
+                <div class="formInr">
+                    <input type="text" placeholder="Emial / Phone" required=""/>
+                </div>
+                <div class="formInr">
+                    <input type="password" placeholder="Password" required=""/>
+                </div>	
+                <div class="formInr login">
+                    <button class="btn confirm" type="submit">Sign Up</button>
+                </div>										
+            </form>
+            <div class="alreadyRegistered">
+                <span class="Regstrd"><span class="blinking">Already an User? </span><a href="#">Login</a></span>
+            </div>
+        </div>
+    </div>
+</div>

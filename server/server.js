@@ -1,4 +1,18 @@
 const express = require('express');
+const fs = require('fs');
+const https = require('https');
+const socket = require('socket.io');
+const privateKey = fs.readFileSync('./config/credentials/server.key', 'utf8');
+const certificate = fs.readFileSync('./config/credentials/fashionandfancy.crt', 'utf8');
+// const ca = fs.readFileSync('./config/credentials/fashionandfancy.ca-bundle', 'utf8');
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  requestCert: false
+  // ca: ca
+}
+
 var path = require('path');
 const app = express();
 const port = 3000;
@@ -20,7 +34,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public/product-uploads/")));
-app.use('/', router);
+
 // Create a Server
 const server = app.listen(port, function () {
  
@@ -29,3 +43,17 @@ const server = app.listen(port, function () {
  
   console.log("App listening at http://%s:%s", host, port); 
 })
+
+// var server = https.createServer(credentials,app);
+
+// var io = socket(server);
+
+// io.on('connection', () => { 
+//   console.log("Socket")
+// });
+
+// server.listen(port, () => {
+//   console.log("HTTPS RUNNING",port);
+// });
+
+app.use('/', router);
